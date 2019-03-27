@@ -1,7 +1,16 @@
+server:
+  port: 9011
 spring:
-  cloud:
-    config:
-      name: manager
-      profile: dev
-      label: master
-      uri: http://127.0.0.1:12000
+  application:
+    name: tensquare-manager #指定服务名
+eureka:
+  client:
+    service-url: #Eureka客户端与Eureka服务端进行交互的地址
+    defaultZone: http://127.0.0.1:6868/eureka/
+  instance:
+    prefer-ip-address: true
+zuul:
+  routes:
+    tensquare-base:
+      path: /base/**
+      serviceId: tensquare-base
